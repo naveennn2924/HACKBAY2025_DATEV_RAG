@@ -31,7 +31,11 @@ MANIFEST
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+<<<<<<< HEAD
 venv/
+=======
+
+>>>>>>> d8dc98fa5ea4b428b6b8c5799d5a11f7ee21f198
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
