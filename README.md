@@ -27,7 +27,7 @@ To run this app locally, you'll need to install the following dependencies:
    If you haven't already cloned this repository, you can do it using the following command:
 
 
-   git clone <repository-url>](https://github.com/naveennn2924/multi-pdf-query-assistant.git
+   https://github.com/naveennn2924/multi-pdf-query-assistant.git
 
 
 ## Usage
