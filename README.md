@@ -45,10 +45,10 @@ The app will process the PDFs, extract their content, and store it in a vector s
 After uploading and processing the PDFs, enter your question in the input field.
 The system will retrieve relevant answers based on the content extracted from the PDFs and display them on the screen.
 ## How It Works
-# PDF Text Extraction: The app extracts text from uploaded PDF files using PyPDF2.
-# Text Chunking: The extracted text is split into smaller chunks using RecursiveCharacterTextSplitter to make it manageable for the model.
-# Vector Store: The app uses the FAISS vector store to store the embeddings of the text chunks for efficient similarity search.
-# Question Answering: Once the text is processed, the app allows users to input questions. The relevant documents are retrieved from the vector store, and the answer is generated using a language model (HuggingFaceHub).
+PDF Text Extraction: The app extracts text from uploaded PDF files using PyPDF2.
+Text Chunking: The extracted text is split into smaller chunks using RecursiveCharacterTextSplitter to make it manageable for the model.
+Vector Store: The app uses the FAISS vector store to store the embeddings of the text chunks for efficient similarity search.
+Question Answering: Once the text is processed, the app allows users to input questions. The relevant documents are retrieved from the vector store, and the answer is generated using a language model (HuggingFaceHub).
 ## Customization
 You can modify the chat_llm model by changing the repo_id in the HuggingFaceHub to another pre-trained model from HuggingFace.
 Adjust the chunk size and overlap in the get_text_chunks() function if the documents are very large.
