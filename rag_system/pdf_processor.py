@@ -1,47 +1,49 @@
-from PyPDF2 import PdfReader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
+from PyPDF2 import PdfReader
 
-def extract_text_from_pdfs(pdf_files):
+def extract_text_from_pdf(pdf_path):
+    text = ""
+    try:
+        with open(pdf_path, "rb") as file:
+            reader = PdfReader(file)
+            for page in reader.pages:
+                page_text = page.extract_text()
+                if page_text:
+                    text += page_text + "\n"
+    except Exception as e:
+        print(f"Error reading {pdf_path}: {e}")
+    return text
+
+def load_policy_texts(company_dir=None, team_dir=None):
     """
-    Accepts list of open file-like PDF objects and extracts full text.
+    Loads and concatenates text from all PDFs in the specified company_dir and/or team_dir.
+    Returns a list of text chunks (one string per PDF).
     """
-    full_text = ""
-    for pdf_file in pdf_files:
-        reader = PdfReader(pdf_file)
-        for page in reader.pages:
-            text = page.extract_text()
-            if text:
-                full_text += text
-    return full_text
+    texts = []
 
-def split_text_chunks(text, chunk_size=1000, chunk_overlap=100):
-    splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-    return splitter.split_text(text)
+    # Helper function to load all PDFs in a directory
+    def load_texts_from_directory(directory):
+        collected_texts = []
+        if not os.path.exists(directory):
+            print(f"Directory does not exist: {directory}")
+            return collected_texts
 
-def load_policy_texts(company_dir="policies/company", team_dir=None):
-    """
-    Loads, extracts, and chunks text from company and optionally team policy PDF files.
-    Returns a list of text chunks.
-    """
-    all_chunks = []
+        for filename in os.listdir(directory):
+            if filename.lower().endswith(".pdf"):
+                file_path = os.path.join(directory, filename)
+                text = extract_text_from_pdf(file_path)
+                if text.strip():
+                    collected_texts.append(text)
+        return collected_texts
 
-    # Load company policy PDFs
-    if os.path.exists(company_dir):
-        for fname in os.listdir(company_dir):
-            path = os.path.join(company_dir, fname)
-            with open(path, "rb") as f:
-                text = extract_text_from_pdfs([f])
-                chunks = split_text_chunks(text)
-                all_chunks.extend(chunks)
+    # Load company policies if provided
+    if company_dir is not None and os.path.exists(company_dir):
+        company_texts = load_texts_from_directory(company_dir)
+        texts.extend(company_texts)
 
-    # Load team policy PDFs if team_dir provided
-    if team_dir and os.path.exists(team_dir):
-        for fname in os.listdir(team_dir):
-            path = os.path.join(team_dir, fname)
-            with open(path, "rb") as f:
-                text = extract_text_from_pdfs([f])
-                chunks = split_text_chunks(text)
-                all_chunks.extend(chunks)
+    # Load team policies if provided
+    if team_dir is not None and os.path.exists(team_dir):
+        team_texts = load_texts_from_directory(team_dir)
+        texts.extend(team_texts)
 
-    return all_chunks
+    return texts

@@ -10,24 +10,28 @@ Given:
 1. Relevant excerpts from company policy documents (compliance context).
 2. A code snippet submitted by a developer.
 
-Please analyze the code and respond in two sections:
+Please analyze the code and respond with the following sections:
 
 ---
 
 ### Critical Compliance Issues (must fix)
 
-- Identify each compliance violation by exact line(s) or function(s).
-- Provide a clear, concise explanation.
-- For each issue, suggest an alternative compliant code snippet or approach.
-- Keep it factual and easy to understand.
+- List each compliance violation by exact line(s) or function(s).
+- Provide concise, actionable fix suggestions.
+- Suggest alternative compliant code snippets if applicable.
 
 ---
 
-### Less Critical Optimization Suggestions
+### Code Optimization Suggestions
 
-- Provide practical tips to improve code quality or performance.
-- These are recommendations, not mandatory fixes.
-- Keep suggestions brief and actionable.
+- Provide brief tips to improve code quality or performance.
+
+---
+
+### Improved and Optimized Code
+
+- Provide the full improved and optimized version of the original code snippet.
+- The code should comply with all policies and incorporate optimization tips.
 
 ---
 
