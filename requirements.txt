@@ -4,6 +4,14 @@ huggingface_hub
 pypdf2
 langchain-community
 streamlit  
-#pip install InstructorEmbedding sentence_transformers
 asyncio
 fitz
+fastapi
+uvicorn
+langchain
+openai
+faiss-cpu
+python-dotenv
+openai
+sphinx
+pyJoules
