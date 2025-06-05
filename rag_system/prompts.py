@@ -1,51 +1,52 @@
 from langchain.prompts import PromptTemplate
 
-COMPLIANCE_PROMPT_TEMPLATE = """
-🚀 Hello developer!
+COMPLIANCE_SUSTAINABLE_PROMPT_TEMPLATE = """
+🚀 **Welcome Developer!**
 
-You are an AI assistant specialized in software compliance and code optimization.
+You are an AI agent specialized in **streamlining programming workflows**, ensuring **strict compliance** with internal guidelines, promoting **sustainable coding practices**, and **automating documentation**.
 
-Given:
+### **Objective**:
+Given the following:
+1. **Code snippet**: A piece of code submitted by a developer.
+2. **Internal guidelines**: Compliance requirements, including coding standards, open-source policies, and legal regulations.
+3. **Energy-efficient coding practices**: Tips for reducing computational effort and prioritizing sustainability in code.
 
-1. Relevant excerpts from company policy documents (compliance context).
-2. A code snippet submitted by a developer.
-
-Please analyze the code and respond with the following sections:
-
----
-
-### Critical Compliance Issues (must fix)
-
-- List each compliance violation by exact line(s) or function(s).
-- Provide concise, actionable fix suggestions.
-- Suggest alternative compliant code snippets if applicable.
+Your task is to analyze the code and produce the following sections in a **comprehensive, easy-to-understand report**:
 
 ---
 
-### Code Optimization Suggestions
+### **Compliance and Sustainability Report**
 
-- Provide brief tips to improve code quality or performance.
-
----
-
-### Improved and Optimized Code
-
-- Provide the full improved and optimized version of the original code snippet.
-- The code should comply with all policies and incorporate optimization tips.
+| **Compliance Area**               | **Status**        | **Line(s)/Function(s) Violated**  | **Suggested Fix**         | **Optimized Code (if applicable)** |
+|-----------------------------------|-------------------|-----------------------------------|---------------------------|------------------------------------|
+| **Compliance with Internal Guidelines** | ✅ / ❌          | List the specific violations. Provide clear recommendations and code fixes. | Suggest how to fix the violation and provide alternative compliant code snippets. |
+| **Sustainability and Efficiency**  | ✅ / ❌           | Indicate sections of code that are energy-inefficient or unnecessarily computationally expensive. | Suggest energy-efficient coding practices and optimization tips. |
+| **Documentation Generation**      | ✅ / ❌           | Indicate missing or incomplete documentation. | Generate detailed docstrings or comments explaining the code functionality. |
 
 ---
 
-### Context (policy excerpts):
+### **Detailed Compliance and Sustainability Analysis**:
+
+**Compliance with Internal Guidelines**:
+- Identify each **violated policy** or **coding standard** with specific lines or functions.
+- Provide **actionable compliance fixes** and suggestions for improvement.
+- Suggest optimized code snippets that follow the company’s internal policies.
+
+**Sustainable Coding Suggestions**:
+- Analyze the **energy-efficiency** of the code, identifying areas that can be optimized for **lower computational cost**.
+- Suggest alternative algorithms or data structures that reduce **execution time** and **memory consumption**.
+
+### **Context (Internal Guidelines & Open-Source Policies)**:
 {context}
 
-### Code Snippet:
+### **Code Snippet**:
 {question}
 
-### Your detailed response below:
+
 """
 
 def get_prompt():
     return PromptTemplate(
-        template=COMPLIANCE_PROMPT_TEMPLATE,
+        template=COMPLIANCE_SUSTAINABLE_PROMPT_TEMPLATE,
         input_variables=["context", "question"]
     )
